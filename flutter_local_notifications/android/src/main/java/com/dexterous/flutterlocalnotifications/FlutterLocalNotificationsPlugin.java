@@ -161,7 +161,10 @@ public class FlutterLocalNotificationsPlugin implements MethodCallHandler, Plugi
     }
 
     private static Notification createNotification(Context context, NotificationDetails notificationDetails) {
-        setupNotificationChannel(context, notificationDetails);
+        try {
+            setupNotificationChannel(context, notificationDetails);
+        } catch (Exception e) {
+        }
         Intent intent = new Intent(context, getMainActivityClass(context));
         intent.setAction(SELECT_NOTIFICATION);
         intent.putExtra(PAYLOAD, notificationDetails.payload);
